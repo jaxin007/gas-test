@@ -1,28 +1,40 @@
 {
-  "name": "gas-test",
-  "version": "1.0.0",
-  "description": "Automatically inform a user when the price of gas on Ethereum is below a specific USD threshold",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/jaxin007/gas-test.git"
-  },
-  "author": "jaxin007",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/jaxin007/gas-test/issues"
-  },
-  "homepage": "https://github.com/jaxin007/gas-test#readme",
-  "devDependencies": {
-    "@types/node": "^14.11.2",
-    "@typescript-eslint/eslint-plugin": "^4.2.0",
-    "@typescript-eslint/parser": "^4.2.0",
-    "eslint": "^7.9.0",
-    "eslint-config-airbnb-base": "^14.2.0",
-    "eslint-plugin-import": "^2.22.0",
-    "typescript": "^4.0.3"
-  }
+   "name": "gas-test",
+   "version": "1.0.0",
+   "description": "Automatically inform a user when the price of gas on Ethereum is below a specific USD threshold",
+   "main": "index.js",
+   "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "start": "ts-node src/index.ts",
+      "docker:pg": "docker-compose up postgres",
+      "docker:touch-pg": "docker exec -it gas-postgres psql -U postgres",
+      "migration:run": "npm run typeorm migration:run",
+      "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js --config ormconfig.ts"
+   },
+   "repository": {
+      "type": "git",
+      "url": "git+https://github.com/jaxin007/gas-test.git"
+   },
+   "author": "jaxin007",
+   "license": "ISC",
+   "bugs": {
+      "url": "https://github.com/jaxin007/gas-test/issues"
+   },
+   "homepage": "https://github.com/jaxin007/gas-test#readme",
+   "devDependencies": {
+      "@types/node": "^8.0.29",
+      "@typescript-eslint/eslint-plugin": "^4.2.0",
+      "@typescript-eslint/parser": "^4.2.0",
+      "eslint": "^7.9.0",
+      "eslint-config-airbnb-base": "^14.2.0",
+      "eslint-plugin-import": "^2.22.0",
+      "ts-node": "3.3.0",
+      "typescript": "^4.0.3"
+   },
+   "dependencies": {
+      "dotenv": "^8.2.0",
+      "pg": "^7.3.0",
+      "reflect-metadata": "^0.1.10",
+      "typeorm": "0.2.26"
+   }
 }
