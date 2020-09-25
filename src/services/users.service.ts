@@ -1,4 +1,7 @@
-import { getConnection, Repository } from 'typeorm';
+import Decimal from 'decimal.js';
+import {
+  getConnection, LessThan, MoreThan, Repository,
+} from 'typeorm';
 import { injectable } from 'inversify';
 
 import { UsersServiceInterface } from '../interfaces';
@@ -19,5 +22,14 @@ export class UsersService implements UsersServiceInterface {
 
   async getAllUsers(): Promise<Users[]> {
     return this.repository.find();
+  }
+
+  getUsersWhereThresholdIsLowerThanGasPrice(gasPrice: number): Promise<Users[]> {
+    return this.repository
+      .find(
+        {
+          threshold: LessThan(gasPrice),
+        },
+      );
   }
 }

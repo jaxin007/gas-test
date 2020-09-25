@@ -10,4 +10,9 @@ export const envConfig: EnvConfigInterface = {
   PGPASSWORD: process.env.PGPASSWORD || 'secret',
   PGPORT: +(process.env.PGPORT || '3300'),
   PORT: +(process.env.PORT || '3000'),
+  COIGNECKO_URL: process.env.COINGECKO_URL || '',
+  ETHGASSTATION_URL: process.env.ETHGASSTATION_URL || '',
+  ETHGASSTATION_APIKEY: process.env.ETHGASSTATION_API_KEY || '',
+  MAIL_USERNAME: process.env.MAIL_USERNAME || '',
+  MAIL_PASSWORD: process.env.MAIL_PASWORD || '',
 };

@@ -1,10 +1,11 @@
 import 'reflect-metadata';
 import * as express from 'express';
 import bodyParser from 'body-parser';
+import cors from 'cors';
 import { InversifyExpressServer } from 'inversify-express-utils';
 import { createConnection } from 'typeorm';
 
-import container from './inversify.config';
+import { container } from './inversify.config';
 
 import './controllers';
 
@@ -15,6 +16,7 @@ export const appPromise = (async (): Promise<express.Application> => {
 
   return server
     .setConfig((app: express.Application) => {
+      app.use(cors());
       app.use(bodyParser.urlencoded(
         {
           extended: false,

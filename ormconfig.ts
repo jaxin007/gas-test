@@ -8,7 +8,7 @@ export = {
   password: envConfig.POSTGRES_PASSWORD,
   database: envConfig.PGDATABASE,
   synchronize: false,
-  logging: false,
+  logging: true,
   entities: [
     './src/entity/**/*.ts',
   ],
