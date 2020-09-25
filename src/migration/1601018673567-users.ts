@@ -11,14 +11,19 @@ export class users1601018673567 implements MigrationInterface {
       columns: [
         {
           name: 'id',
-          type: 'int',
+          type: 'serial',
           isPrimary: true,
         },
         {
           name: 'email',
-          type: 'char',
+          type: 'varchar',
           isNullable: false,
           isUnique: true,
+        },
+        {
+          name: 'threshold',
+          type: 'numeric',
+          isNullable: false,
         },
       ],
     }), true);
