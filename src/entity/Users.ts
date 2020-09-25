@@ -18,6 +18,6 @@ export class Users {
     )
     email: string;
 
-    @Column('numeric')
+    @Column('double precision')
     threshold: number
 }

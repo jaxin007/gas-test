@@ -1,11 +1,10 @@
 import { Container } from 'inversify';
 
 import TYPES from './services/types';
-import { UsersService } from './services';
-import { UsersServiceInterface } from './interfaces';
+import { UsersService, CurrencyService } from './services';
+import { UsersServiceInterface, CurrencyServiceInterface } from './interfaces';
 
-const container = new Container();
+export const container = new Container();
 
 container.bind<UsersServiceInterface>(TYPES.UsersService).to(UsersService);
-
-export default container;
+container.bind<CurrencyServiceInterface>(TYPES.CurrencyService).to(CurrencyService);
