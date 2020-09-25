@@ -4,17 +4,20 @@ import {
   Column,
 } from 'typeorm';
 
-@Entity()
+@Entity('users')
 export class Users {
     @PrimaryGeneratedColumn()
     id: number;
 
     @Column(
       {
-        type: 'char',
+        type: 'varchar',
         nullable: false,
         unique: true,
       },
     )
     email: string;
+
+    @Column('numeric')
+    threshold: number
 }

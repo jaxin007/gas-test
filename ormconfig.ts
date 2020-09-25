@@ -5,7 +5,7 @@ export = {
   host: envConfig.PGHOST,
   port: envConfig.PGPORT,
   username: envConfig.PGUSER,
-  password: envConfig.PGPASSWORD,
+  password: envConfig.POSTGRES_PASSWORD,
   database: envConfig.PGDATABASE,
   synchronize: false,
   logging: false,
@@ -23,4 +23,4 @@ export = {
     migrationsDir: './src/migration',
     subscribersDir: './src/subscriber',
   },
-}
+};

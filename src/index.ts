@@ -1,18 +1,32 @@
 import 'reflect-metadata';
+import * as express from 'express';
+import bodyParser from 'body-parser';
+import { InversifyExpressServer } from 'inversify-express-utils';
 import { createConnection } from 'typeorm';
 
-import { Users } from './entity/Users';
+import container from './inversify.config';
 
-createConnection().then(async (connection) => {
-  console.log('Inserting a new user into the database...');
-  const user = new Users();
-  user.email = 'test@gmail.com';
-  await connection.manager.save(user);
-  console.log(`Saved a new user with id: ${user.id}`);
+import './controllers';
 
-  console.log('Loading users from the database...');
-  const users = await connection.manager.find(Users);
-  console.log('Loaded users: ', users);
+const server = new InversifyExpressServer(container);
 
-  console.log('Here you can setup and run express/koa/any other framework.');
-}).catch((error) => console.log(error));
+export const appPromise = (async (): Promise<express.Application> => {
+  await createConnection();
+
+  return server
+    .setConfig((app: express.Application) => {
+      app.use(bodyParser.urlencoded(
+        {
+          extended: false,
+        },
+      ));
+      app.use(bodyParser.json());
+    })
+    .setErrorConfig((app: express.Application) => {
+      app.use((err: Error, req: express.Request, res: express.Response, next: express.NextFunction) => {
+        console.error(err.stack);
+        res.status(500).json(err);
+      });
+    })
+    .build();
+});
